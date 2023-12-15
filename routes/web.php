@@ -16,5 +16,5 @@ use Illuminate\Support\Facades\Route;
 // 首页
 Route::get('/', 'PagesController@root')->name('root');
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
