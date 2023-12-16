@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// 首页
-Route::get('/', 'PagesController@root')->name('root');
+// 用户一进来就能看到商品列表，因此让首页直接跳转到商品页面
+Route::redirect('/', '/products')->name('root');
+Route::get('products', 'ProductsController@index')->name('products.index');
 
 // 注册与登录
 Auth::routes(['verify' => true]);

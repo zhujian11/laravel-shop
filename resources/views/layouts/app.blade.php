@@ -16,6 +16,7 @@
         <div class="container">
             @yield('content')
         </div>
+        <div style="height: 40px;"></div>
         @include('layouts._footer')
     </div>
     <!-- JS 脚本 -->
