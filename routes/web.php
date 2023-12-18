@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 // 用户一进来就能看到商品列表，因此让首页直接跳转到商品页面
 Route::redirect('/', '/products')->name('root');
 Route::get('products', 'ProductsController@index')->name('products.index');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
 // 注册与登录
 Auth::routes(['verify' => true]);
