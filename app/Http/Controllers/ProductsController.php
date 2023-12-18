@@ -58,6 +58,37 @@ class ProductsController extends Controller
             throw new InvalidRequestException('商品未上架');
         }
 
-        return view('products.show', ['product' => $product]);
+        $favored = false;
+
+        if ($user = $request->user()) {
+            $favored = boolval($user->favoriteProducts()->find($product->id));
+        }
+
+        return view('products.show', ['product' => $product, 'favored' => $favored]);
+    }
+
+    // 收藏商品
+    public function favor(Product $product, Request $request)
+    {
+        $user = $request->user();
+
+        // 判断是否已经收藏过该商品
+        if ($user->favoriteProducts()->find($product->id)) {
+            return [];
+        }
+
+        $user->favoriteProducts()->attach($product);
+
+        return [];
+    }
+
+    // 取消收藏
+    public function disfavor(Product $product, Request $request)
+    {
+        $user = $request->user();
+
+        $user->favoriteProducts()->detach($product);
+
+        return [];
     }
 }
