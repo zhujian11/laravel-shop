@@ -15,10 +15,6 @@ use Illuminate\Support\Facades\Route;
 
 // 用户一进来就能看到商品列表，因此让首页直接跳转到商品页面
 Route::redirect('/', '/products')->name('root');
-// 商品列表
-Route::get('products', 'ProductsController@index')->name('products.index');
-// 商品详情
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
 // 注册与登录
 Auth::routes(['verify' => true]);
@@ -38,5 +34,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     // 收藏与取消收藏商品
     Route::post('products/{product}/favorite', 'ProductsController@favor')->name('products.favor');
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
+    // 收藏列表
+    Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
 });
+
+// 商品列表
+Route::get('products', 'ProductsController@index')->name('products.index');
+// 商品详情
+Route::get('products/{product}', 'ProductsController@show')->name('products.show');
 
