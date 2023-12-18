@@ -36,10 +36,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::delete('products/{product}/favorite', 'ProductsController@disfavor')->name('products.disfavor');
     // 收藏列表
     Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
+    // 添加购物车
+    Route::post('cart', 'CartController@add')->name('cart.add');
 });
 
 // 商品列表
 Route::get('products', 'ProductsController@index')->name('products.index');
 // 商品详情
-Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+Route::get('products/{product}', 'ProductsController@show')->name('products.show')->where(['product' => '[0-9]+']);
 
