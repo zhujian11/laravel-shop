@@ -48,10 +48,15 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('orders', 'OrdersController@index')->name('orders.index');
     // 订单详情
     Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
+    // 支付宝支付
+    Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+    // 支付宝前端回调
+    Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
 });
 
 // 商品列表
 Route::get('products', 'ProductsController@index')->name('products.index');
 // 商品详情
 Route::get('products/{product}', 'ProductsController@show')->name('products.show')->where(['product' => '[0-9]+']);
-
+// 支付宝服务器端回调
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');
