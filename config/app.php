@@ -234,4 +234,6 @@ return [
 
     'order_ttl' => 1800, // 触发关闭订单任务后30秒后执行
 
+    'ngrok_url' => env('NGROK_URL'),
+
 ];
