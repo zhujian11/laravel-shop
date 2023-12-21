@@ -54,6 +54,12 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
     // 确认收货
     Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+    // 展示评价
+    Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');
+    // 提交评价
+    Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
+    // 申请退款
+    Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
 });
 
 // 商品列表
