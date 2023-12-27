@@ -38,7 +38,7 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('products/favorites', 'ProductsController@favorites')->name('products.favorites');
     // 添加购物车
     Route::post('cart', 'CartController@add')->name('cart.add');
-    //查看购物车
+    // 查看购物车
     Route::get('cart', 'CartController@index')->name('cart.index');
     // 移除购物车中商品
     Route::delete('cart/{sku}', 'CartController@remove')->name('cart.remove');
@@ -62,6 +62,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::post('orders/{order}/apply_refund', 'OrdersController@applyRefund')->name('orders.apply_refund');
     // 检查优惠券
     Route::get('coupon_codes/{code}', 'CouponCodesController@show')->name('coupon_codes.show');
+    // 众筹商品下单
+    Route::post('crowdfunding_orders', 'OrdersController@crowdfunding')->name('crowdfunding_orders.store');
 });
 
 // 商品列表
