@@ -64,8 +64,10 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('coupon_codes/{code}', 'CouponCodesController@show')->name('coupon_codes.show');
     // 众筹商品下单
     Route::post('crowdfunding_orders', 'OrdersController@crowdfunding')->name('crowdfunding_orders.store');
-    // 分期付款
+    // 创建分期付款
     Route::post('payment/{order}/installment', 'PaymentController@payByInstallment')->name('payment.installment');
+    // 分期付款列表页
+    Route::get('installments', 'InstallmentsController@index')->name('installments.index');
 });
 
 // 商品列表
