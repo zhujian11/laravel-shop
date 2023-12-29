@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="col-md-3">
-          <select name="order" class="form-control form-control-sm float-end">
+          <select name="order" class="form-select form-select-sm float-end">
             <option value="">排序方式</option>
             <option value="price_asc">价格从低到高</option>
             <option value="price_desc">价格从高到低</option>
