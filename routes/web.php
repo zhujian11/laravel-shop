@@ -74,6 +74,8 @@ Route::group(['middleware' => ['auth', 'verified']], function() {
     Route::get('installments/{installment}/alipay', 'InstallmentsController@payByAlipay')->name('installments.alipay');
     // 分期付款支付宝支付前端回调
     Route::get('installments/alipay/return', 'InstallmentsController@alipayReturn')->name('installments.alipay.return');
+    // 秒杀
+    Route::post('seckill_orders', 'OrdersController@seckill')->name('seckill_orders.store');
 });
 
 // 商品列表
